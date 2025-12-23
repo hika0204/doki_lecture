@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset ="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lecture03</title>
+
+  <!-- destyle.css_スタイルを初期化するopen-CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@4.0.1/destyle.min.css">
+  <!-- 自分のCSS -->
+  <link rel="stylesheet" href=style.css>
+</head>
+
+<body>
+  <header class="header-fixed">
+    <h2 class="header-text">高さ80pxのヘッダー(lightblue: #ADD8E6)</h2>
+    <!-- aria-labelは視覚障害者のアクセシビリティ用。navと似た要素-->
+    <button class="hamburger" aria-label="メニューを開く">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+  <main class="main-content">
+    <!-- サイドバー背景用 -->
+    <aside class="side-container"> 
+      <!-- サイドバーコンテンツ用 -->
+      <div class="side-inner">
+        <h2>幅200pxのサイドバー(lightgreen: #90EE90)</h2>
+        <nav class="menu-container">
+          <ul class="menu-list">
+            <li class="menu-item">Home</li>
+            <li class="menu-item">About</li>
+            <li class="menu-item">Contact</li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <section class="section-content">
+      <div class="section1-container">
+        <h2>Section 1 (lightcoral: #F08080)</h2>
+        <p class="pc-only-text">PC(768pxより大きい)のときに表示されるよ</p>
+      </div>
+      <div class="section2-container">
+        <h2>Section 2 (lightcoral: #F08080)</h2>
+      </div>
+      <div class="section3-container">
+        <h2>Section 3 (lightcoral: #F08080)</h2>
+      </div>
+    </section>
+  </main>
+
+  <!-- 768px未満でのポップアップメニュー -->
+  <div class="sp-menu" id="spMenu">
+    <nav>
+      <ul class="sp-menu-list">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</body>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const spMenu = document.getElementById('spMenu');
+  const header = document.querySelector('.header-fixed');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.classList.toggle('is-open');
+    spMenu.classList.toggle('is-open', isOpen);
+
+    header.classList.toggle('is-open', isOpen);
+
+    document.body.style.overflow = isOpen ? 'hidden' : 'visible';
+  });
+</script>
